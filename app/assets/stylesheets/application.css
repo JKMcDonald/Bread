@@ -13,7 +13,6 @@
  *= require_tree .
  *= require_self
  */
-
- #bread-checkout-btn {
-  font-color: red;
- }
+.beige {
+  background-color: beige;
+}
