@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'welcome/index'
   
-  # post 'welcome/checkout', to: 'welcome#checkout', as: 'checkout'
+  get '/confirm', to: 'welcome#confirm', as: 'confirm'
 
   root 'welcome#index'
 

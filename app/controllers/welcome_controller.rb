@@ -2,6 +2,6 @@ class WelcomeController < ApplicationController
   def index
   end
 
-  # def checkout
-  # end
+  def confirm
+  end
 end
