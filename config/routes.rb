@@ -4,5 +4,4 @@ Rails.application.routes.draw do
   get '/confirm', to: 'welcome#confirm', as: 'confirm'
 
   root 'welcome#index'
-
 end
