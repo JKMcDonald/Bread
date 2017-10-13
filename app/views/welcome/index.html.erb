@@ -4,14 +4,15 @@
     <p>Checkout below:</p>
     <p> DBPOWER T20 1500 Lumens LCD Mini Projector, Multimedia Home Theater Video Projector Support 1080P HDMI USB SD Card VGA AV for Home Cinema TV Laptop Game iPhone Andriod Smartphone with Free HDMI Cable </p>
 
-    <link rel = "stylesheet" type = "text/css" href = "./Bread.css" />
     <img src="https://images-na.ssl-images-amazon.com/images/I/411utAweOUL._SL500_AC_SS350_.jpg" alt="Projector"/>
     <p> Sale: $100 </p>
 
     <!-- Include our button within a form for seamless integration -->
     <form id="checkout-form" action="checkout" method="post">
       <!-- Note that you must pass a div element -->
+    
       <div id="bread-checkout-btn" data-bread-default-size=true></div>
+
     </form>
 
         <!-- Load the bread.js script (this can be here or usually in the head) -->
@@ -81,20 +82,43 @@
         shippingOptions: [
           {
             type: '2-day shipping',
-            typeId: 'GS_001',
+            typeId: '2D_001',
             cost: 1350,
+          },
+          {
+            type: 'Overnight',
+            typeId: 'O_002',
+            cost: 2000,
           }
         ],
-        tax: 0, // optional
+        // if (shippingContact.state == "NY") {
+        //   tax: (shippingOptions.cost * .05);
+        // }
+        // else { 
+        // tax: 0;
+        // }, // optional
         shippingContact: shippingContact,
-        billingContact: billingContact
-      };
+        billingContact: billingContact,
+        done: function(err, txToken) {
+            $.ajax({
+            url: '/checkout/confirm', type: 'POST',
+            type: shippingOptions.type,
+            typeId: shippingOptions.typeId,
+            cost: shippingOptions.cost,
+            data: {token: txToken} }).done(function(data){
+              if (data.error === undefined){
+                $("#successPanel").show(); 
+                $("#orderConfirmationNumber").text(data.orderConfirmationId); 
+                    }
+            }); 
+          }
+        };
 
       // We will assume your `cart` object has the `total`
       // dollar amount of products in the cart.
       if (cart.total > 2000) {
         // Use a non-default Targeted Financing Program for carts over $2000
-        opts.financingProgramId = '0000000-aaaa-bbbb-cccc-ddddddddddd';
+        opts.financingProgramId = '38a968d8-da0b-44be-8d7d-d2817c 954c29';
       }
 
       // Lastly, call `checkout` with `opts` as the argument.
