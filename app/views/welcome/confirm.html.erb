@@ -1,3 +1,7 @@
+<% if params[:token].length > 5 %>
 <p> Thanks for your order! Here is your transaction ID:  <%= params[:token] %> </p>
+<% else %>
+<p> Sorry, your order was not confirmed. Please return to the home page and try again </p>
+<% end %>
 
 <%= link_to "Home", root_path %>
